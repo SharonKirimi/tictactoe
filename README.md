@@ -10,3 +10,8 @@ As a user I want to be able to listen to music of my choice while playing
 Wireframe
 
 ![Wireframe](https://imgur.com/lQkAWZw)
+
+Future ideas
+
+have a pen that drwas the tictactoe board
+have a listener to get any X or O's movements of the touchpad or mouse
