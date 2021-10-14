@@ -13,5 +13,5 @@ Wireframe
 
 Future ideas
 
-have a pen that drwas the tictactoe board
+have a pen that draws out the the tictactoe board
 have a listener to get any X or O's movements of the touchpad or mouse

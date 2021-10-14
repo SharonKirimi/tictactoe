@@ -1,1 +1,62 @@
 @import '~bootstrap/scss/bootstrap';
+
+:root {
+  --bg: rgb(99, 126, 99);
+  --text: rgb(43, 41, 41);
+  --btn--bg: rgb(100, 67, 67);
+  --box: rgb(59, 89, 99);
+}
+
+body {
+  color: var(--bg);
+  font-family: 'Indie Flower', cursive;
+  position: fixed
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+
+}
+
+h1 {
+  font-size: 60px;
+  text-transform: uppercase;
+
+}
+.container {
+  padding: 40px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.gameboard{
+
+}
+.box{
+  height: 150px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  color: var(--box);
+  background-color: red;
+  font: 160px
+
+}
+button{
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: var(--bg);
+  color: white;
+  border-color: var(--bg);
+  font-size: 18px;
+  transition: 200ms transform;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: translate(-2px);
+}
