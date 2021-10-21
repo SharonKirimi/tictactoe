@@ -1,1 +1,96 @@
 @import '~bootstrap/scss/bootstrap';
+* {
+ font-family: 'Indie Flower', cursive;
+ justify-content: center;
+}
+.container{
+  height: 100vh;
+}
+.board {
+  margin: auto;
+  max-height: calc(100vh - 75px);
+  max-width: calc(100vh - 75px);
+}
+.box {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  &:nth-child(3n) {
+    border-right: 0;
+  }
+  &:nth-last-child(-1n + 3) {
+    border-bottom: 0;
+  }
+  min-height: calc(100% / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 54px;
+  text-transform: uppercase;
+}
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  padding-bottom: 200px;
+}
+
+.modal_body {
+  margin: auto;
+  height: 400px;
+  width: 400px;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid white;
+  border-radius: 1em;
+  transition: all 1s ease;
+}
+
+.message {
+  font-size: 2em;
+}
+
+.restartBtn {
+  height: 40px;
+  padding: 0 15px;
+  background-color: cadetblue;
+  color: white;
+  border: aliceblue;
+  border-radius: 1em;
+  margin-top: 50px;
+  font-size: 2em;
+}
+
+.restartBtn:hover,
+.restartBtn:active {
+  background-color: turquoise;
+  color: black;
+  border: 1px solid whitesmoke;
+}
+
+.restartBtn:focus {
+  outline: none;
+}
+button{
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: var(--btn--bg);
+  border-color: white;
+  font-size: 18px;
+  transition: 200ms transform;
+}
+button:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+}

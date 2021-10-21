@@ -1,17 +1,125 @@
 <!DOCTYPE html>
-<html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FUN TicTacToe</title>
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <!-- Do not add link tags-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+    <!-- Do not add script tags-->
+
+    <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+
+    <script src="/index.js" type="text/javascript" charset="utf-8" defer></script>
+
+  </head>
+
+  <body class="container-fluid">
+    <header>
+      <img alt="Company Logo" src="Logo.png">
+      <h1 class="game-title">TicTacToe</h1>
+
+      <h2>Experience the most interactive, comforting TicTacToe ever created</h2>
+      <div class="container-fluid">
+
+        <section id="before-sign-in">
+          <form id="sign-up" class="border">
+            <fieldset>
+              <legend>Sign up</legend>
+              <input type="text" name="credentials[email]" placeholder="Email" required>
+              <input type="password" name="credentials[password]" placeholder="Password" required>
+              <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password" required>
+              <button class="btn btn-primary">Sign up</button>
+            </fieldset>
+          </form>
+
+          <form id="sign-in" class="border">
+            <fieldset>
+              <legend>Sign in</legend>
+              <input type="text" name="credentials[email]" placeholder="Email" required>
+              <input type="password" name="credentials[password]" placeholder="Password" required>
+              <button class="btn btn-primary">Sign in</button>
+            </fieldset>
+          </form>
+        </section>
+
+
+        <section id="after-sign-in">
+          <form id="sign-out" class="border">
+            <fieldset>
+              <legend>Sign Out</legend>
+              <button class="btn btn-danger">Sign out</button>
+            </fieldset>
+          </form>
+
+          <form id="change-password" class="border">
+            <fieldset>
+              <legend>Change Password!</legend>
+              <input type="password" name="passwords[old]" placeholder="Old Password" required>
+              <input type="password" name="passwords[new]" placeholder="New Password" required>
+              <button class="btn btn-primary">Change password</button>
+            </fieldset>
+          </form>
+        </section>
+      </div>
+    </header>
+
+    <section class="container">
+      <div class="row h-100 board">
+        <div class="col-4 box" id="0"></div>
+        <div class="col-4 box" id="1"></div>
+        <div class="col-4 box" id="2"></div>
+
+        <div class="col-4 box" id="3"></div>
+        <div class="col-4 box" id="4"></div>
+        <div class="col-4 box" id="5"></div>
+
+        <div class="col-4 box" id="6"></div>
+        <div class="col-4 box" id="7"></div>
+        <div class="col-4 box" id="8"></div>
+      </div>
+    </section>
+
+    <div class="modal">
+      <div class="modal_body">
+        <div class="message"></div>
+        <button class="restartBtn">Play Again</button>
+      </div>
+    </div>
+
+    <footer>
+      <div id="music">
+        <h3>Listen to music as you play</h3>
+
+        <p>Click on the play button to play a sound:</p>
+
+        <audio controls>
+          <source src="/Audio 1.mp3" type="audio/ogg">
+          <source src="/Audio 1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <div>
+        <h5>Contact us</h5>
+        <h5>
+            <p>
+              Email:
+            <a href="mailto:funtictactoe@gmail.com" >funtictactoe@gmail.com</a>
+          </p>
+          </h5>
+
+      </div>
+
+
+    </footer>
+
+
+  </body>
+
 </html>
