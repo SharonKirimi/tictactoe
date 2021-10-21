@@ -93,9 +93,9 @@ const playerHasWon = () => {
       boxes.forEach(box => {
         box.innerText = '';
       })
-      playText.innerText = `Let's Play!`;
+      //playText.innerText = `Let's Play!`;
       currentPlayer = O_TEXT;
    };
-restartBtn.addEventListener('click', restart);
+//restartBtn.addEventListener('onclick', restart);
 restart ();
 drawBoard();
