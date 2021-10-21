@@ -1,7 +1,7 @@
 # tictactoe
 
 ## Description
-This projects aim is to have a fun,relaxing game where users are able to sign in, sign up to the application.Its other goal it to enable users to interact with their opponents live and listen to the music of their choice as they play. The game will save the winner's mark as they play along.
+This project aims is to provide a fun,relaxing platform where users are able to sign in, sign up and easily sign out  of/to the application and play the game 'tictactoe' with the leisure of relaxing music, a platform to interact with your opponent and many other user interactive forms. The game will record all the wins of a user per log-in session.
 
 ## Technologies used
 
