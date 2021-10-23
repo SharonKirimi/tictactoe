@@ -1,7 +1,12 @@
 curl "https://library-express-api.herokuapp.com/sign-in" \
   --include \
-  --request POST \
+   --request POST \
   --header "Content-Type: application/json" \
-  --data ''
+  --data '{
+    "credentials":{
+      "email" : "'"${EMAIL}"'",
+      "password" : "'"${PASSWORD}"'"
+    }
+  }'
 
 echo

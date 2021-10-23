@@ -1,13 +1,4 @@
-curl "https://library-express-api.herokuapp.com/movies" \
-  --include \
-  --request POST \
-  --header "Content-Type: application/json" \
+curl --include --request POST "https://tic-tac-toe-api-production.herokuapp.com/games" \
+  --header "Content-type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
-  --data '{
-    "movie": {
-      "title": "'"${TITLE}"'",
-      "director": "'"${DIRECTOR}"'"
-    }
-  }'
-
 echo
