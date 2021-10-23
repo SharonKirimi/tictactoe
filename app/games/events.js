@@ -1,3 +1,7 @@
+const api = require("./api");
+
+const ui = require("./ui");
+
 const onStartGame = function (event) {
   event.preventDefault();
   const gameStart = event.target;
