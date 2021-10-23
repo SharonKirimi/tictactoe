@@ -1,110 +1,118 @@
 const store = require("../store");
 
+$(window).on("load", function () {
+  $("#tic-tac-toe div").attr("disabled", "disabled");
+});
+
 const signUpSuccess = function (responseData) {
-  // update the message on the screen
-  $("#games-display").text("Signed up successfully");
+  $("#user-display").text("Sign up successful");
 
-  // remove existing classes and add a green text-success class from bootstrap
-  $("#games-display").removeClass();
-  $("#games-display").addClass("text-success");
-
-  // clear (reset) the forms on the page
+  $("#user-display").removeClass();
+  $("#user-display").addClass("text-white");
   $("form").trigger("reset");
 
-  console.log("signUpSuccess ran. responseData is :", responseData);
+  setTimeout(() => $("#user-display").text(""), 3000);
+
+  console.log("Response data is ", responseData);
 };
 
 const signUpFailure = function (error) {
-  $("#error-message").text("Error on sign up");
+  $("#error-message").text("Sign up failed");
 
-  // remove existing classes and add a red text-danger class from bootstrap
   $("#error-message").removeClass();
-  $("#error-message").addClass("text-danger");
+  $("#error-message").addClass("text-info");
+  $("form").trigger("reset");
 
-  console.error("signUpFailure ran. Error is :", error);
+  setTimeout(() => $("#error-message").text(""), 3000);
+  console.error("Error is", error);
 };
 
 const signInSuccess = function (responseData) {
-  $("#games-display").text("Signed in successfully");
-
-  $("#games-display").removeClass();
-  $("#games-display").addClass("text-success");
-
-  // after signing in, save the `user` from our response's data
-  // on the `store` object. So we can access the user's `token` later
   store.user = responseData.user;
+  console.log("store is ", store);
 
-  // clear (reset) the forms on the page
+  $("#user-display").text("You have been successfully signed in!");
+
+  setTimeout(() => $("#user-display").text(""), 3000);
+
+  $("#user-display").removeClass();
+  $("#user-display").addClass("text-white");
   $("form").trigger("reset");
-
-  // Hide the "before sign in" elements
   $("#before-sign-in").hide();
-  // Display the "after sign in" elements
   $("#after-sign-in").show();
 };
 
 const signInFailure = function (error) {
-  $("#error-message").text("Error on sign in");
+  $("#error-message").text(
+    "Sign in unsuccessful. Please ensure credentials are correct."
+  );
+
+  setTimeout(() => $("#error-message").text(""), 3000);
 
   $("#error-message").removeClass();
-  $("#error-message").addClass("text-danger");
+  $("#error-message").addClass("text-info");
+  console.error("Error is", error);
 
-  console.error("signInFailure ran. Error is :", error);
+  setTimeout(() => $("#error-message").text(""), 3000);
 };
 
-const signOutSuccess = function () {
-  $("#games-display").text("Signed out successfully");
+const changePasswordSuccess = function (responseData) {
+  $("#user-display").text("Changed password successfully");
 
-  $("#games-display").removeClass();
-  $("#games-display").addClass("text-success");
-
+  $("#user-display").removeClass();
+  $("#user-display").addClass("text-success");
   $("form").trigger("reset");
 
-  // stop keeping track of the signed in user
-  store.user = null;
-
-  // clear (reset) the forms on the page
-  $("form").trigger("reset");
-
-  // Hide the "after sign in" elements
-  $("#after-sign-in").hide();
-  // Display the "before sign in" elements
-  $("#before-sign-in").show();
-
-  console.log("signOutSuccess ran and nothing was returned!");
-};
-
-const signOutFailure = function (error) {
-  $("#error-message").text("Error on sign out");
-
-  $("#error-message").removeClass();
-  $("#error-message").addClass("text-danger");
-
-  // clear (reset) the forms on the page
-  $("form").trigger("reset");
-
-  console.error("signOutFailure ran. Error is :", error);
-};
-
-const changePasswordSuccess = function () {
-  $("#games-display").text("Changed password successfully");
-
-  $("#games-display").removeClass();
-  $("#games-display").addClass("text-success");
-
-  // clear (reset) the forms on the page
-  $("form").trigger("reset");
-
-  console.log("changePasswordSuccess ran and nothing was returned!");
+  console.log("Response data is ", responseData);
 };
 
 const changePasswordFailure = function (error) {
-  $("#error-message").text("Error on change password");
+  $("#error-message").text("Password change failed");
 
   $("#error-message").removeClass();
   $("#error-message").addClass("text-danger");
+  console.error("Error is", error);
+};
 
-  console.error("changePasswordFailure ran. Error is :", error);
+const signOutSuccess = function (responseData) {
+  $("#user-display").text("You have been successfully signed out");
+  $("#results").text("");
+
+  $("#user-display").removeClass();
+  $("#user-display").addClass("text-light");
+  $("form").trigger("reset");
+
+  $("#after-sign-in").hide();
+
+  $("#before-sign-in").show();
+
+  $(".box").text("");
+
+  setTimeout(() => $("#user-display").text(""), 3000);
+
+  console.log("responseData is ", responseData);
+};
+
+const signOutError = function (error) {
+  $("#error-message").text("There was a error signing you out");
+
+  $("#error-message").removeClass();
+  $("#error-message").addClass("text-info");
+  console.error("Error is", error);
+};
+
+const preSignUp = function () {
+  $(".sign-up-card").show();
+  $("#back-to-sign-in").show();
+  $(".sign-in-card").hide();
+  $("#pre-sign-up").hide();
+};
+
+const BackToSignIn = function () {
+  $(".sign-up-card").hide();
+  $(".sign-in-card").show();
+  $("#back-to-sign-in").hide();
+  $("#pre-sign-up").show();
 };
 
 module.exports = {
@@ -112,8 +120,10 @@ module.exports = {
   signUpFailure,
   signInSuccess,
   signInFailure,
-  signOutSuccess,
-  signOutFailure,
   changePasswordSuccess,
   changePasswordFailure,
+  signOutSuccess,
+  signOutError,
+  preSignUp,
+  BackToSignIn,
 };
