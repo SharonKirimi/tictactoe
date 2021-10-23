@@ -1,66 +1,103 @@
-const getFormFields = require("../../lib/get-form-fields");
+const spaces = ["", "", "", "", "", "", "", "", ""];
 
-const api = require("./api");
-const ui = require("./ui");
+let count = 0;
+const box = [];
+let i = 0;
 
-const onCreateGame = function (event) {
-  event.preventDefault();
-  console.log("onCreateMGame ran!");
+$(".row div").each(function () {
+  box[i++] = $(this).attr("id");
+});
 
-  const form = event.target;
-  const formData = getFormFields(form);
+const winningOptions = [
+  [box[0], box[1], box[2]],
+  [box[3], box[4], box[5]],
+  [box[6], box[7], box[8]],
+  [box[0], box[3], box[6]],
+  [box[1], box[4], box[7]],
+  [box[2], box[5], box[8]],
+  [box[0], box[4], box[8]],
+  [box[2], box[4], box[6]],
+];
 
-  api.create(formData).then(ui.onCreateSuccess).catch(ui.onCreateFailure);
+const selectBox = function (event) {
+  const id = event.target.id;
+  if (!spaces[id]) {
+    if (count % 2 === 0) {
+      currentPlayer = $("#" + id).text(player1);
+      $("#" + id).off("click");
+      spaces[id] = document.getElementById(id);
+    } else {
+      currentPlayer = $("#" + id).text(player2);
+      $("#" + id).off("click");
+      spaces[id] = document.getElementById(id);
+    }
+    count++;
+  }
+
+  winningPlayer();
+
+  console.log(spaces);
+
+  return currentPlayer;
+};
+const winningPlayer = function (event) {
+  for (let idx = 0; idx < 8; idx++) {
+    if (
+      spaces[winningOptions[idx][0]].innerHTML ===
+        spaces[winningOptions[idx][1]].innerHTML &&
+      spaces[winningOptions[idx][1]].innerHTML ===
+        spaces[winningOptions[idx][2]].innerHTML &&
+      spaces[winningOptions[idx][2]].innerHTML ===
+        spaces[winningOptions[idx][0]].innerHTML &&
+      spaces[winningOptions[idx][1]].innerHTML !== "" &&
+      spaces[winningOptions[idx][1]] !== ""
+    ) {
+      console.log(spaces[winningOptions[idx][0]].innerHTML);
+      $("#results")
+        .text(`${spaces[winningOptions[idx][0]].innerHTML} is the WINNER`)
+        .addClass("gradient-text");
+
+      $("#tic-tac-toe div").off("click", selectBox);
+    } else if (count === 9) {
+      $("#results").text("Tie Game").removeClass("gradient-text");
+    }
+  }
 };
 
-const onIndexGames = function (event) {
-  event.preventDefault();
-  console.log("onIndexGames ran!");
+const startGameSuccess = function (responseData) {
+  $("#user-display").text("Game successfully started");
+  $("#user-display").removeClass();
+  $("#user-display").addClass("text-white");
 
-  api.index().then(ui.onIndexSuccess).catch(ui.onIndexFailure);
+  $("#tic-tac-toe div").on("click", selectBox);
+
+  setTimeout(() => $("#user-display").text(""), 3000);
 };
 
-const onShowGame = function (event) {
-  event.preventDefault();
-  console.log("onShowGame ran!");
+const startGameFailure = function () {
+  $("#error-message").text(
+    "There was a error starting the game. Please try again"
+  );
 
-  const form = event.target;
-  const formData = getFormFields(form);
-  const id = formData.game.id;
+  $("#error-message").removeClass();
+  $("#error-message").addClass("text-light");
 
-  api.show(id).then(ui.onShowSuccess).catch(ui.onShowFailure);
+  setTimeout(() => $("#error-message").text(""), 3000);
 };
 
-const onDeleteGame = function (event) {
-  event.preventDefault();
-  console.log("onDeleteGame ran!");
-
-  const form = event.target;
-  const formData = getFormFields(form);
-  const id = formData.game.id;
-
-  api.destroy(id).then(ui.onDeleteSuccess).catch(ui.onDeleteFailure);
-};
-
-const onUpdateGame = function (event) {
-  event.preventDefault();
-  console.log("onUpdateGame ran!");
-
-  const form = event.target;
-  const formData = getFormFields(form);
-  const id = formData.game.id;
-
-  api.update(id, formData).then(ui.onUpdateSuccess).catch(ui.onUpdateFailure);
-};
-
-const addHandlers = () => {
-  $("#games-create").on("submit", onCreateGame);
-  $("#games-index").on("submit", onIndexGames);
-  $("#games-show").on("submit", onShowGame);
-  $("#games-delete").on("submit", onDeleteGame);
-  $("#games-update").on("submit", onUpdateGame);
+const resetGame = () => {
+  $(".box").text("");
+  $("#results").text("");
+  for (let i = 0; i < spaces.length; i++) {
+    spaces[i] = "";
+  }
+  count = 0;
 };
 
 module.exports = {
-  addHandlers,
+  startGameSuccess,
+  startGameFailure,
+  selectBox,
+  winningPlayer,
+  resetGame,
 };
