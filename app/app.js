@@ -1,6 +1,6 @@
 const authEvents = require("./auth/events");
 
-const gameEvents = require("./game/events");
+const gameEvents = require("./games/events");
 
 $(() => {
   $("#sign-up").on("submit", authEvents.onSignUp);

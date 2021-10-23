@@ -1,3 +1,7 @@
+const player1 = "X";
+const player2 = "O";
+let currentPlayer = "";
+
 const spaces = ["", "", "", "", "", "", "", "", ""];
 
 let count = 0;
